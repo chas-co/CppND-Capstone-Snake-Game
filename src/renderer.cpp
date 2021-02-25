@@ -38,7 +38,7 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(Snake const snake, SDL_Point const &food, SDL_Point const &poison) {
+void Renderer::Render(Snake const snake, SDL_Point const &food, std::vector<SDL_Point> const poison) {
   SDL_Rect block;
   block.w = screen_width / grid_width;
   block.h = screen_height / grid_height;
@@ -55,10 +55,14 @@ void Renderer::Render(Snake const snake, SDL_Point const &food, SDL_Point const 
 
   // Render poison
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x00, 0x00, 0xFF);
-  block.x = poison.x * block.w;
-  block.y = poison.y * block.h;
-  SDL_RenderFillRect(sdl_renderer, &block);
-
+  for (SDL_Point const &p : poison)
+  {
+    block.x = p.x * block.w;
+    block.y = p.y * block.h;
+    SDL_RenderFillRect(sdl_renderer, &block);
+  }
+  
+  
   // Render snake's body
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
   for (SDL_Point const &point : snake.body) {

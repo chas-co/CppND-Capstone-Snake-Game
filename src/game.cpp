@@ -67,16 +67,33 @@ void Game::PlaceFood() {
 }
 void Game::PlacePoison() {
   int x, y;
-  while (true) {
-    x = random_w(engine);
-    y = random_h(engine);
-    // Check that the location is not occupied by a snake item before placing
-    // food.
-    if (!snake.SnakeCell(x, y)) {
-      poison.x = x;
-      poison.y = y;
-      return;
+  if (score % 5 == 0 )
+    {
+      SDL_Point p;
+      for(int i =0 ; i< score ; i++)
+      {
+        poison.emplace_back(p);
+      }
+      std::cout<<"Number of poison =" << poison.size()<< std::endl;
     }
+  for(SDL_Point  &p : poison)
+  {
+    std::cout<< "Placing poison..."<< std::endl;
+    while (true)
+    {
+      
+      x = random_w(engine);
+      y = random_h(engine);
+      // Check that the location is not occupied by a snake item before placing
+      // food.
+      if (!snake.SnakeCell(x, y) && !Game::FoodCell(x,y)) 
+      {
+        p.x = x;
+        p.y = y;
+        break;
+      }
+    }
+    
   }
 }
 void Game::Update() {
@@ -91,15 +108,29 @@ void Game::Update() {
   if (food.x == new_x && food.y == new_y) {
     score++;
     PlaceFood();
+    PlacePoison();
     // Grow snake and increase speed.
     snake.GrowBody();
-    snake.speed += 0.02;
+    //snake.speed += 0.02;
   }
-  else if(poison.x == new_x && poison.y == new_y)
+  for (SDL_Point const &p : poison)
   {
-    snake.alive = false ;
+    if(p.x == new_x && p.y == new_y)
+    {
+      snake.alive = false ;
+    }
   }
 }
+  
 
 int Game::GetScore() const { return score; }
 int Game::GetSize() const { return snake.size; }
+
+bool Game::FoodCell(int x, int y) 
+{
+  if (x == food.x && y == food.y) 
+  {
+    return true;
+  }
+   return false;
+}
