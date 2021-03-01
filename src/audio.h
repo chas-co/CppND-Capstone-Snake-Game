@@ -12,7 +12,7 @@ class Sound
     ~Sound();
     
     void PlaySound(int channelNumber, int effectNumber);
-    enum Channels { chSnake, chGame };
+    enum Channels { chAuto=-1, chchSnake, chGame };
     enum SoundEffects { sndEatFood, sndGameOver};
 
    private:
