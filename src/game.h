@@ -35,7 +35,8 @@ class Game {
 
   void PlaceFood();
   void PlacePoison(); // New: method to place poision points
-  void Update();
+  int Update();
+  void SetScore(int gamescore); //New set score to a given integer
   
 };
 

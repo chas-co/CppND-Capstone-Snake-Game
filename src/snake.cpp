@@ -77,3 +77,6 @@ bool Snake::SnakeCell(int x, int y) {
   }
   return false;
 }
+
+// Set the size of the snake to a given integer
+void Snake::SetSize(int snakesize){ size = snakesize; }

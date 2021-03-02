@@ -27,7 +27,14 @@ void Game::Run(Controller const &controller, Renderer &renderer,
 
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, snake);
-    Update();
+    if (Update() == 0)
+    {
+      SetScore(0);
+      poison.clear();
+      snake.SetSize(1);
+      snake.body.clear();
+      snake.alive = true;
+    }
     renderer.Render(snake, food, poison);
 
     frame_end = SDL_GetTicks();
@@ -104,12 +111,12 @@ void Game::PlacePoison()
     
   }
 }
-void Game::Update() {
+int Game::Update() {
   if (!snake.alive) 
   {
     sound.PlaySound(1,1);
     SDL_Delay(3500);
-    return;
+    return 0;
   }
   snake.Update();
 
@@ -136,13 +143,15 @@ void Game::Update() {
       snake.alive = false ;
     }
   }
+  return 1;
 }
   
 
 int Game::GetScore() const { return score; }
 int Game::GetSize() const { return snake.size; }
 
-// New: Verify if a given cell is a occupied by food
+// New: Verify if a given cell is a occupied by food and Poison
+
 bool Game::FoodCell(int x, int y) 
 {
   if (x == food.x && y == food.y) 
@@ -163,3 +172,6 @@ bool Game::PoisonCell(int x, int y)
   }
   return false;
 }
+
+// Set Score implementation
+void Game::SetScore(int gameScore) { score = gameScore;}
