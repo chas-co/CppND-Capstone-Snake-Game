@@ -8,17 +8,23 @@
 class Sound
 {
    public:
+   //Constructo/ Destructor
     Sound(int MaxChannel);
     ~Sound();
-    
-    void PlaySound(int channelNumber, int effectNumber);
-    enum Channels { chAuto=-1, chchSnake, chGame };
+    // Method
+    void PlaySound(int channelNumber, int effectNumber); // Plays specified sound effect.
+
+    // enumerations for sound effect 
+    enum Channels {chchSnake, chGame };
     enum SoundEffects { sndEatFood, sndGameOver};
 
    private:
-    void LoadSound();
-    int const _numChannels;
-    Mix_Chunk *_sounds[2];
+   //Private Method
+    void LoadSound(); // Loads Sound Effects
+
+    //Private members
+    int const _numChannels; // Number of channels 
+    Mix_Chunk *_audio[2]; // audio chunk object 
 };
 
 #endif
