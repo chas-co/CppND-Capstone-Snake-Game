@@ -1,10 +1,10 @@
 # CPPND: Capstone Snake Game 
 
 This project is my final submission for the Capston project in the  [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The starter code for this Capstone project was inspired by [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
-The project is made up of 5 main classes. The audio class handle the in game audio. The  controller class handles user input for the game play. The game class handle the game play for example placing the food randomly and ensuring a constant frame rate. The renderer class handles the opening of the game windo and how objects are displayed with the window. Finally, the snake class handles the snake object; for example its growth, speed, its movement etc.
+The project is made up of 5 main classes. The audio class handle the in game audio. The  controller class handles user input for the game play. The game class handle the game play for example placing the food randomly and ensuring a constant frame rate. The renderer class handles the opening of the game window and how objects are displayed within the window. Finally, the snake class handles the snake object; for example its growth, speed, its movement etc.
 
 ## Modifications
-A few improvements were made to the started code. The files these additions have comments beginning with "New" attached to them.
+A few improvements were made to the started code. In the files these additions have comments beginning with "New" attached to them.
 * The speed was made constant and poisoned food feature was added to the game. The game begins with the normal food and poisoned food is added anytime the score reaches a  multiple of 5. The snake still grows when it eats normal food but dies on consumption of the poisoned food
 * The colour of the normal food was changed from yellow to green. The poisoned food colour was set to red.
 * Sound was added to the game. When the snake eats the food a crunching sound is played and when the snake dies a game over sound is played.
