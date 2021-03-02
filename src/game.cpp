@@ -1,12 +1,14 @@
 #include "game.h"
 #include <iostream>
 #include "SDL.h"
+#include "audio.h"
 
-Game::Game(std::size_t grid_width, std::size_t grid_height)
+Game::Game(std::size_t grid_width, std::size_t grid_height,std::size_t num_channels)
     : snake(grid_width, grid_height),
+      sound(num_channels),
       engine(dev()),
-      random_w(0, static_cast<int>(grid_width)),
-      random_h(0, static_cast<int>(grid_height)) {
+      random_w(0, static_cast<int>(grid_width-1)),
+      random_h(0, static_cast<int>(grid_height-1)) {
   PlaceFood();
   PlacePoison();
 }
@@ -58,54 +60,66 @@ void Game::PlaceFood() {
     y = random_h(engine);
     // Check that the location is not occupied by a snake item before placing
     // food.
-    if (!snake.SnakeCell(x, y)) {
+    if (!snake.SnakeCell(x, y) && !PoisonCell(x,y)) {
       food.x = x;
       food.y = y;
       return;
     }
   }
 }
-void Game::PlacePoison() {
+
+// New:: Method to add posioned food to the game for the snake
+void Game::PlacePoison() 
+{
   int x, y;
-  if (score % 5 == 0 )
+
+  // Check if score is up to 5
+  if (score % 5 == 0 ) 
     {
-      SDL_Point p;
+      //Create an SDL point and add "score" number of poison point to the poison vector
+      SDL_Point p; p.x = 0; p.y = 0;
       for(int i =0 ; i< score ; i++)
       {
         poison.emplace_back(p);
       }
-      std::cout<<"Number of poison =" << poison.size()<< std::endl;
     }
+  // Iterate through all the items in the poison vector
   for(SDL_Point  &p : poison)
   {
-    std::cout<< "Placing poison..."<< std::endl;
-    while (true)
+    if (p.x == 0 && p.y == 0)
     {
-      
-      x = random_w(engine);
-      y = random_h(engine);
-      // Check that the location is not occupied by a snake item before placing
-      // food.
-      if (!snake.SnakeCell(x, y) && !Game::FoodCell(x,y)) 
+        while (true)
       {
-        p.x = x;
-        p.y = y;
-        break;
+        x = random_w(engine);
+        y = random_h(engine);
+        // Check that the location is not occupied by a snake or food item before placing poison.
+        if (!snake.SnakeCell(x, y) && !Game::FoodCell(x,y) && !Game::PoisonCell(x,y)) 
+        {
+          p.x = x;
+          p.y = y;
+          break;
+        }
       }
     }
     
   }
 }
 void Game::Update() {
-  if (!snake.alive) return;
-
+  if (!snake.alive) 
+  {
+    sound.PlaySound(1,1);
+    SDL_Delay(3500);
+    return;
+  }
   snake.Update();
 
   int new_x = static_cast<int>(snake.head_x);
   int new_y = static_cast<int>(snake.head_y);
 
   // Check if there's food over here
-  if (food.x == new_x && food.y == new_y) {
+  if (food.x == new_x && food.y == new_y) 
+  {
+    sound.PlaySound(0, 0);
     score++;
     PlaceFood();
     PlacePoison();
@@ -115,8 +129,10 @@ void Game::Update() {
   }
   for (SDL_Point const &p : poison)
   {
+    // New:Check if the snake has eaten poisoned food
     if(p.x == new_x && p.y == new_y)
     {
+      // The snake dies if it eats poisoned food
       snake.alive = false ;
     }
   }
@@ -126,6 +142,7 @@ void Game::Update() {
 int Game::GetScore() const { return score; }
 int Game::GetSize() const { return snake.size; }
 
+// New: Verify if a given cell is a occupied by food
 bool Game::FoodCell(int x, int y) 
 {
   if (x == food.x && y == food.y) 
@@ -133,4 +150,16 @@ bool Game::FoodCell(int x, int y)
     return true;
   }
    return false;
+}
+
+bool Game::PoisonCell(int x, int y) 
+{
+  for(auto &P : poison)
+  {
+    if (x == P.x && y == P.y) 
+    {
+      return true;
+    }
+  }
+  return false;
 }
