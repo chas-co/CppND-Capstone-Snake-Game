@@ -1,12 +1,32 @@
-# CPPND: Capstone Snake Game Example
+# CPPND: Capstone Snake Game 
 
-This is a starter repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The code for this repo was inspired by [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
+This project is my final submission for the Capston project in the  [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The starter code for this Capstone project was inspired by [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
+
+## Modifications
+* The speed was made constant and poisoned food feature was added to the game. The game begins with the normal food and poisoned food is added anytime the score reaches a  multiple of 5. The snake still grows when it eats normal food but dies on consumption of the poisoned food
+* The colour of the normal food was changed from yellow to green. The poisoned food colour was set to red.
+* Sound was added to the game. When the snake eats the food a crunching sound is played and when the snake dies a game over sound is played.
+* The game was modified to restart on the death of the snake. The snakes length, the score, the snake body and the poisoned food are all resest. The user can continue playing the game until they close the window.
 
 <img src="snake_game.gif"/>
 
-The Capstone Project gives you a chance to integrate what you've learned throughout this program. This project will become an important part of your portfolio to share with current and future colleagues and employers.
+## Ruberic Points Address
+* The project demonstrates an understanding of C++ functions and control structures.
+  * In game.cpp line 79 a PoisonedFood() method is implemented with if clauses, for loops and a while loop.   
+* The project reads data from a file and process the data, or the program writes data to a file.
+  * In audio.cpp line 33 the LoadSound() method accesses sound files in the work space.
+* The project uses Object Oriented Programming techniques.
+  * A new class Sound has been defined and implemented in audio.h and audio.cpp files
+* Classes use appropriate access specifiers for class members.
+  * In the audio.h the member have been defined as either public or private
+* Class constructors utilize member initialization lists.
+  * In the audio.cpp file line 9 the member _numChannels has been initialised with an initialisation list. Also in game.cpp line 8 the new sound member is initialised in the initialisation list.
 
-In this project, you can build your own C++ application or extend this Snake game, following the principles you have learned throughout this Nanodegree Program. This project will demonstrate that you can independently create applications using a wide range of C++ features.
+## Future Work
+* Adding game menu title page etc.
+* Adding different game difficulties and set the snake speed accordingly.
+* Adding in game music.
+* Rending the in game objects with more realistic objects.
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
