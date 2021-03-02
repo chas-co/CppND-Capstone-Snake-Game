@@ -10,7 +10,7 @@ class Renderer {
   Renderer(const std::size_t screen_width, const std::size_t screen_height,
            const std::size_t grid_width, const std::size_t grid_height);
   ~Renderer();
-
+  //New: Renderer Method updated to render poison points 
   void Render(Snake const snake, SDL_Point const &food, std::vector <SDL_Point> const poison);
   void UpdateWindowTitle(int score, int fps);
 
