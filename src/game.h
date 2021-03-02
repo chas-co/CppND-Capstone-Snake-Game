@@ -22,7 +22,7 @@ class Game {
 
  private:
   Snake snake;
-  Sound sound;
+  Audio sound;
   SDL_Point food;
   std::vector<SDL_Point> poison; // New:vector to store poison points
 

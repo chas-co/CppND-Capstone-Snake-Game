@@ -114,7 +114,7 @@ void Game::PlacePoison()
 int Game::Update() {
   if (!snake.alive) 
   {
-    sound.PlaySound(1,1);
+    sound.PlayAudio(1,1);
     SDL_Delay(3500);
     return 0;
   }
@@ -126,7 +126,7 @@ int Game::Update() {
   // Check if there's food over here
   if (food.x == new_x && food.y == new_y) 
   {
-    sound.PlaySound(0, 0);
+    sound.PlayAudio(0, 0);
     score++;
     PlaceFood();
     PlacePoison();

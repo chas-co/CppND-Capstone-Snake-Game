@@ -6,7 +6,7 @@
 
 
     // New: Sound constructor 
-    Sound::Sound(int MaxChannels):_numChannels(MaxChannels)
+    Audio::Audio(int MaxChannels):_numChannels(MaxChannels)
     {
         // initialise SDL mixer so other functions can be used 
         if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
@@ -17,12 +17,12 @@
         Mix_AllocateChannels(_numChannels);
         
         // Load Sound to be used in the game
-        Sound::LoadSound();
+        Audio::LoadAudio();
         
     }
 
     // New: Sound destructor
-    Sound::~Sound()
+    Audio::~Audio()
     {
         //Free Previosly Loaded audio
         Mix_FreeChunk(_audio[SoundEffects::sndEatFood]);
@@ -30,7 +30,7 @@
         Mix_Quit();
     }
 
-    void Sound::LoadSound()
+    void Audio::LoadAudio()
     {
         // Load eatfood sound and check if it is loaded properly
         _audio[SoundEffects::sndEatFood] = Mix_LoadWAV("../audio/zapsplat_human_eat_potato_chip_single_bite_crunch_001_50031.wav");
@@ -50,7 +50,7 @@
 
     }
 
-    void Sound:: PlaySound(int channelNumber, int effectNumber)
+    void Audio::PlayAudio(int channelNumber, int effectNumber)
     {
         // Play specified sound effect on specified channel
         Mix_PlayChannel(channelNumber, _audio[effectNumber],0);

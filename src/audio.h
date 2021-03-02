@@ -5,14 +5,14 @@
 #include <SDL2/SDL_mixer.h>
 
 
-class Sound
+class Audio
 {
    public:
    //Constructo/ Destructor
-    Sound(int MaxChannel);
-    ~Sound();
+    Audio(int MaxChannel);
+    ~Audio();
     // Method
-    void PlaySound(int channelNumber, int effectNumber); // Plays specified sound effect.
+    void PlayAudio(int channelNumber, int effectNumber); // Plays specified sound effect.
 
     // enumerations for sound effect 
     enum Channels {chchSnake, chGame };
@@ -20,7 +20,7 @@ class Sound
 
    private:
    //Private Method
-    void LoadSound(); // Loads Sound Effects
+    void LoadAudio(); // Loads Sound Effects
 
     //Private members
     int const _numChannels; // Number of channels 
