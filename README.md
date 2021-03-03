@@ -10,7 +10,7 @@ A few improvements were made to the started code. In the files these additions h
 * Sound was added to the game. When the snake eats the food a crunching sound is played and when the snake dies a game over sound is played.
 * The game was modified to restart on the death of the snake. The snakes length, the score, the snake body and the poisoned food are all resest. The user can continue playing the game until they close the window.
 
-<img src="snake_game.gif"/>
+<img src="SnakeGame.gif"/>
 
 ## Ruberic Points Addressed
 The following rubric points were addressed in this project.   
