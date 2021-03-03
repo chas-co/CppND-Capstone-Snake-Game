@@ -12,6 +12,7 @@
         if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
         {
             std::cout << "Failed to initialise SDL Mixer"<<std::endl;
+            std::cout << "Mixer Error: "<< Mix_GetError() << std::endl;
         }
         // Allocate the number of channels SDL mixer will manage 
         Mix_AllocateChannels(_numChannels);
