@@ -17,7 +17,7 @@ The following rubric points were addressed in this project.
 * The project demonstrates an understanding of C++ functions and control structures.
   * In game.cpp line 79 a PoisonedFood() method is implemented with if clauses, for loops and a while loop.   
 * The project reads data from a file and process the data, or the program writes data to a file.
-  * In audio.cpp line 33 the LoadSound() method accesses sound files in the work space.
+  * In audio.cpp line 33 the GetSound() method accesses sound files in the work space.
 * The project uses Object Oriented Programming techniques.
   * A new class Sound has been defined and implemented in audio.h and audio.cpp files
 * Classes use appropriate access specifiers for class members.
@@ -31,6 +31,11 @@ The following rubric points were addressed in this project.
 * Adding in game music.
 * Rending the in game objects with more realistic objects.
 
+## Resources 
+* The SDL library [wiki](https://wiki.libsdl.org/FrontPage) webpage
+* SDL library based game development tutorial by [LazyFoo](https://lazyfoo.net/tutorials/SDL/)
+* Sound effects from [Zapsplat](https://www.zapsplat.com/sound-effect-categories/)
+
 ## Dependencies for Running Locally
 * cmake >= 3.7
   * All OSes: [click here for installation instructions](https://cmake.org/install/)
@@ -38,9 +43,10 @@ The following rubric points were addressed in this project.
   * Linux: make is installed by default on most Linux distros
   * Mac: [install Xcode command line tools to get make](https://developer.apple.com/xcode/features/)
   * Windows: [Click here for installation instructions](http://gnuwin32.sourceforge.net/packages/make.htm)
-* SDL2 >= 2.0
+* SDL2 >= 2.0 
   * All installation instructions can be found [here](https://wiki.libsdl.org/Installation)
   * Note that for Linux, an `apt` or `apt-get` installation is preferred to building from source.
+  * The script to FindSDL2 mixer library using cmake was obtained from [this](https://github.com/tcbrindle/sdl2-cmake-scripts/blob/master/FindSDL2_mixer.cmake) git hub repo
 * gcc/g++ >= 5.4
   * Linux: gcc / g++ is installed by default on most Linux distros
   * Mac: same deal as make - [install Xcode command line tools](https://developer.apple.com/xcode/features/)
