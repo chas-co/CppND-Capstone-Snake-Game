@@ -20,7 +20,7 @@ class Audio
 
    private:
    //Private Method
-    void LoadAudio(); // Loads Sound Effects
+    void GetAudio(); // Loads Sound Effects
 
     //Private members
     int const _numChannels; // Number of channels 

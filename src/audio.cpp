@@ -17,7 +17,7 @@
         Mix_AllocateChannels(_numChannels);
         
         // Load Sound to be used in the game
-        Audio::LoadAudio();
+        Audio::GetAudio();
         
     }
 
@@ -30,7 +30,7 @@
         Mix_Quit();
     }
 
-    void Audio::LoadAudio()
+    void Audio::GetAudio()
     {
         // Load eatfood sound and check if it is loaded properly
         _audio[SoundEffects::sndEatFood] = Mix_LoadWAV("../audio/zapsplat_human_eat_potato_chip_single_bite_crunch_001_50031.wav");
